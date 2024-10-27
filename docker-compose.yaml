@@ -1,0 +1,19 @@
+version: '3.8'
+
+networks:
+  fin-network:
+    driver: bridge
+    external: true
+
+
+services:
+  rabbit:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "8080:15672"  # Порт для веб-интерфейса
+      - "5672:5672"   # Порт для AMQP
+    environment:
+      RABBITMQ_DEFAULT_USER: user  # Задайте имя пользователя
+      RABBITMQ_DEFAULT_PASS: password  # Задайте пароль
