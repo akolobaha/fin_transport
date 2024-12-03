@@ -12,8 +12,10 @@ services:
     container_name: rabbitmq
     hostname: rabbitmq
     ports:
-      - "8080:15672"  # Порт для веб-интерфейса
-      - "5672:5672"   # Порт для AMQP
+      - "${RABBIT_WEB_PORT}:15672"  # Порт для веб-интерфейса
+      - "${RABBIT_AMQP_PORT}:5672"   # Порт для AMQP
     environment:
       RABBITMQ_DEFAULT_USER: user  # Задайте имя пользователя
       RABBITMQ_DEFAULT_PASS: password  # Задайте пароль
+    volumes:
+      - ./docker/rabbitmq_data:/var/lib/rabbitmq
