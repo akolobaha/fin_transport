@@ -19,3 +19,16 @@ services:
       RABBITMQ_DEFAULT_PASS: password  # Задайте пароль
     volumes:
       - ./docker/rabbitmq_data:/var/lib/rabbitmq
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    hostname: prometheus
+    volumes:
+      - ./docker/prometheus_data:/prometheus
+      - ./docker/prometheus:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
+    networks:
+      - fin-network
