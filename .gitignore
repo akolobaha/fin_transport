@@ -1,0 +1,3 @@
+*.idea
+docker/rabbitmq_data
+docker/prometheus_data
